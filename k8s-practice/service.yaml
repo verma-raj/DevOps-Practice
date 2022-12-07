@@ -8,6 +8,7 @@ spec:
   type: NodePort
   ports:
     - port: 80   # service port
-      targetPort: 80 # container port
+      targetPort: 8080 # container port Jenkins
+      #targetPort: 80 # container port nginx
       nodePort: 30040  # Node port
 
