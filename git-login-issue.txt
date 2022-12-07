@@ -1,0 +1,11 @@
+1. git config --global user.name "ur user name"
+2. git config --global user.email "GFGexample@gmail.orgg"
+3. git config --global user.password "1234321"
+
+4. To save the credentials forever, type the below command as depicted:
+git config --global credential.helper store
+
+5. This is how you set git username and password in git bash.
+To check the inputs, type the below command as depicted:
+
+git config --list --show-origin
