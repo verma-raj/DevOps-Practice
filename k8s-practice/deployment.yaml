@@ -13,8 +13,8 @@ spec:
     spec:
       containers:
         - name: pod-deploy-container 
-          # image: jenkins/jenkins:lts
-          image: nginx
+          image: jenkins/jenkins:lts
+          #image: nginx
   selector:
     matchLabels:
       app: 07Dec
