@@ -9,3 +9,4 @@ git config --global credential.helper store
 To check the inputs, type the below command as depicted:
 
 git config --list --show-origin
+==================================THE END=======================
