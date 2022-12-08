@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nfsmnt-deploy  # name of the deployment  created
+
+spec:
+  replicas: 4
+  template:
+    metadata:
+      name: pod-deploy # name of the pod
+      labels: 
+        app: 07Dec # Label of the Pod
+    spec:
+      containers:
+        - name: pod-deploy-container  # name of the container
+          image: jenkins/jenkins:lts  # name of the image from dockerhub
+          #image: nginx ------ COMMENTED
+          volumeMounts:
+            - name: jenkinsvol # Mountpoint (name of the dir where the container vol will be mounted)
+              mountPath: /data/jen
+
+      volumes: 
+        - name: jenkinsvol   # volume name and volumeMounts name must be same.
+           nfs:
+            server: 172.31.89.200
+            path: /mnt/nfs_share   # target path of the jenkins container
+
+  selector:
+    matchLabels:
+      app: 07Dec  # selector helps the replicaset to find all the matching label pods
