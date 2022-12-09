@@ -16,13 +16,13 @@ spec:
           image: jenkins/jenkins:lts  # name of the image from dockerhub
           #image: nginx ------ COMMENTED
           volumeMounts:
-            - name: jenkinsvol # Mountpoint (name of the dir where the container vol will be mounted)
-              mountPath: /data/jen
+            - name: jenkinsvol # 
+              mountPath: /var/jenkins_home # Container's directory which will be mounted
 
       volumes: 
         - name: jenkinsvol   # volume name and volumeMounts name must be same.
           hostPath:
-            path: /var/jenkins_home   # target path of the jenkins container
+            path: /data/jen    # target path of the host volume (Mountpoint)
             type: Directory
 
 
