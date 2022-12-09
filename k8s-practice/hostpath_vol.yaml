@@ -8,22 +8,22 @@ spec:
   template:
     metadata:
       name: pod-deploy # name of the pod
-      labels: 
+      labels:
         app: 07Dec # Label of the Pod
     spec:
       containers:
         - name: pod-deploy-container  # name of the container
-          image: jenkins/jenkins:lts  # name of the image from dockerhub
-          #image: nginx ------ COMMENTED
+          #image: jenkins/jenkins:lts  # name of the image from dockerhub
+          image: nginx
           volumeMounts:
-            - name: jenkinsvol # 
-              mountPath: /var/jenkins_home # Container's directory which will be mounted
+            - name: jenkinsvol #
+              mountPath: /var/tmp # Container's directory which will be mounted
 
-      volumes: 
+      volumes:
         - name: jenkinsvol   # volume name and volumeMounts name must be same.
           hostPath:
-            path: /data/jen    # target path of the host volume (Mountpoint)
-            type: Directory
+            path: /home/ubuntu/jen    # created folder jen and target path of the host volume (Mountpoint)
+              #type: Directory
 
 
   selector:
