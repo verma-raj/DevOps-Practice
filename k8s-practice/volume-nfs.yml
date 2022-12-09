@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-volume-nfs  # name of the deplyment created
+spec:
+ replicas: 4
+ template:
+   metadata:
+     name: deploy-pod-nfs    # name of the pod
+     labels:
+      app: 12Dec   #label of the pod
+   spec:  # creating spec for the template
+     containers:
+       - name: nginxcontainer   # container name
+         image: jenkins/jenkins:lts       # image to be pulled from github
+         volumeMounts:
+           - name: nginxmount  # name of the nginx path
+             mountPath: /var/jenkins_home
+
+     volumes:
+       - name: nginxmount
+         nfs:
+           server: 172.31.81.239    #  private ip address of the NFS server
+           path : /mnt/nfs_share1/       #  mount path create din nfs server
+
+ selector:
+   matchLabels:
+     app: 12Dec

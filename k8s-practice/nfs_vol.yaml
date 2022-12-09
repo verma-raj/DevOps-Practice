@@ -8,21 +8,21 @@ spec:
   template:
     metadata:
       name: pod-deploy # name of the pod
-      labels: 
+      labels:
         app: 07Dec # Label of the Pod
     spec:
       containers:
         - name: pod-deploy-container  # name of the container
-          image: jenkins/jenkins:lts  # name of the image from dockerhub
-          #image: nginx ------ COMMENTED
+          #image: jenkins/jenkins:lts  # name of the image from dockerhub
+          image: nginx
           volumeMounts:
-            - name: jenkinsvol # Mountpoint (name of the dir where the container vol will be mounted)
-              mountPath: /data/jen
+            - name: demovol # Mountpoint (name of the dir where the container vol will be mounted)
+              mountPath: /var/tmp
 
-      volumes: 
-        - name: jenkinsvol   # volume name and volumeMounts name must be same.
-           nfs:
-            server: 172.31.89.200
+      volumes:
+        - name: demovol   # volume name and volumeMounts name must be same.
+          nfs:
+            server: 172.31.84.242  # private IP of NFS Server
             path: /mnt/nfs_share   # target path of the jenkins container
 
   selector:
