@@ -1,31 +1,48 @@
+							=========================================
 							SET UP KUBERNETES Cluster in Kubeadm way 
-							=====================================
+							=========================================
 							
-							Worker Node - t2Micro instance
-							Master Node - t2Medium instance
-							
-Run below commands on both the worker node 
+							2 Worker Nodes - t2Micro instance
+							1 Master Node - t2Medium instance
 
+run below commands in all the three nodes 
+
+sudo hostname master     --- Do in MASTER node
+exec bash
+
+sudo hostname worker-01   --- Do in Worker-01
+exec bash
+
+sudo hostname worker-02   -- Do in Worker-02
+exec bash
+
+---------------------------------------------
+							
+Run below commands on both the worker node .
+
+copy below list of commands and paste in a file in ubuntu m/c and run as 
+
+bash <filename>   
+
+Run in all the nodes ( both worker and one master )
+
+#---------------------------------------------
 sudo apt update -y
 sudo apt install docker.io -y
-
 sudo systemctl start docker
 sudo systemctl enable docker
-
 sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
-
 echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
-
 sudo apt update -y
 sudo apt install kubeadm=1.20.0-00 kubectl=1.20.0-00 kubelet=1.20.0-00 -y
+#-----------------------------
+
+
+
 ===============
 =	Master Node 
 ===============
-Run from above step 1 to step 8 in master node also .
 
-sudo su
-hostnamectl set-hostname master
-exec bash
 
 sudo kubeadm init (this will generate the join token command which needs to be executed on the worker node)
 
@@ -33,22 +50,24 @@ sudo kubeadm init (this will generate the join token command which needs to be e
   sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
   sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
+You will get a token like below 
+
+ kubeadm join 172.31.8.191:6443 --token urtcjf.v3x9ynempvymuw0h \
+    --discovery-token-ca-cert-hash sha256:0cc8c0cf6153f68a350f4d015c43d929af8201ca7705b4423f352e52e3533ab8
+
+copy the token and run in the worker nodes after deploying below CNI in master node.
+
 Deploy CNI
 ===================
 kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
 
 
 Execute token command with sudo on both the worker nodes  (As below)
+
 ( Token will be different hence don't copy the same here )
-kubeadm join 172.31.8.191:6443 --token urtcjf.v3x9ynempvymuw0h \
+sudo kubeadm join 172.31.8.191:6443 --token urtcjf.v3x9ynempvymuw0h \
     --discovery-token-ca-cert-hash sha256:0cc8c0cf6153f68a350f4d015c43d929af8201ca7705b4423f352e52e3533ab8
 
 
-kubectl get nodes -w
-
-Worker Node
-
-sudo su
-hostnamectl set-hostname worker
-exec bash
+kubectl get nodes -w   ( do this in master node and you will find all the nodes in ready status )
 

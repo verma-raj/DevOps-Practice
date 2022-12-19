@@ -1,0 +1,57 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pvc-deploy           # Name of the deployment resource
+spec:
+  replicas: 4                # Number of pods replica to be created
+  template:
+    metadata:
+      name: pvc-deploy-pod   # Name of the upcomming pod
+      labels:
+        app: pvc             # Label to identify the pod
+    spec:
+      containers:
+        - name: pvc-nginx-container
+          image: nginx
+          volumeMounts:
+            - name: pvc-shared-nfs
+              mountPath: /var/tmp    # path of nginx
+      volumes:
+        - name: pvc-shared-nfs
+          persistentVolumeClaim:        # Pod will looks for "pvc-nfs-claim" persistant Volume claim
+            claimName: pvc-nfs-claim    # Name of the claim
+  selector:
+    matchLabels:
+      app: pvc
+
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-nfs-claim          # pvc-nfs-claim is mapped with the pod
+spec:
+  storageClassName: manual     # if this line is there in PVC then the same should be there in PV also
+  resources:
+      requests:
+        storage: 1Gi
+  accessModes:
+      - ReadWriteMany          # NFS support RWMany as it will be share across nodes
+
+---
+
+apiVersion: v1
+kind: PersistentVolume         # PV
+metadata:
+  name: pv-nfs
+spec:
+  storageClassName: manual     # Volume is created manually;Dynamically canbe created using Provisioner
+  capacity:
+     storage: 1Gi
+  accessModes:
+    - ReadWriteMany           # accessModes should be matched with PVC
+  persistentVolumeReclaimPolicy: Recycle
+  nfs:
+    server: 172.31.86.179     # private IP address of NFS share
+    path: /mnt/nfs_share      # NFS mount path
