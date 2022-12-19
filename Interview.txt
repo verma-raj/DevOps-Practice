@@ -1,0 +1,31 @@
+
+Hi my name is Rajiv Verma. I have 17 years of experience in IT . I have worked as C++ , Java, PL SQL and Unix shell script developer. Then moved to support where I worked on operations side , managed a big team 17 people in differenct location.  Later moved to Devops . Now from past 5 years I am into DevOps project .
+
+My responsibility includes supporting various project teams in adopting DevOps culture. Setting up devOps infrastructure and managing them. In BAU we support managing issues with CI/CD pipelines, licence upgrade , daily issues related to pods running in kubernetes cluster, and creating namespace for the deployments etc..
+
+
+========================================================================
+Interview Questions
+========================================================================
+0. How to copy a file from one server to another server ?
+0. What is the difference between TCP and UDP protocol ?
+0. Can I say the server with load 5 is highly loaded ?
+0. What is slowly getting loaded hardware in the server ? --- 
+1. What is average Load ? How you identify if the load is high on a server ?
+2. What could be the reason of low performance of the application ?
+3. What is public ip and private ip ?
+4. how you identify the private ip ?
+5. Question on CIDR and how to know how many host servers will be created in a CIDR?
+6. What is C-Name and A-record ?
+7. What is rebasing ?  --- GIT
+8. what is staging area ?  --- GIT
+9. What branch strategy do you follow ? --GIT
+10. What is nodeGroup ?   --- K8S
+11. What is statefulset and DaemonSet ?   --- K8S
+12. what is liveliness and readiness ?   --- K8S
+13. Can we deploy pod in Master node ? Why and can that be still deployed ?   --- K8S
+14. What kubernetes cluster do you use ? EKS ?? or On-Prem ?   --- K8S
+15. What is terraform statefile ? What will happen if I delete that ? --- Terraform
+
+
+===================================================================================
