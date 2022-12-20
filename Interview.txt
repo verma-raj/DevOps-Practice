@@ -15,17 +15,19 @@ Interview Questions
 2. What could be the reason of low performance of the application ?
 3. What is public ip and private ip ?
 4. how you identify the private ip ?
-5. Question on CIDR and how to know how many host servers will be created in a CIDR?
-6. What is C-Name and A-record ?
-7. What is rebasing ?  --- GIT
-8. what is staging area ?  --- GIT
-9. What branch strategy do you follow ? --GIT
-10. What is nodeGroup ?   --- K8S
-11. What is statefulset and DaemonSet ?   --- K8S
-12. what is liveliness and readiness ?   --- K8S
-13. Can we deploy pod in Master node ? Why and can that be still deployed ?   --- K8S
-14. What kubernetes cluster do you use ? EKS ?? or On-Prem ?   --- K8S
-15. What is terraform statefile ? What will happen if I delete that ? --- Terraform
+5. What is region and Availability zone ?
+6. What is the difference between NAT gateway and Internet Gateway. ?
+7. Question on CIDR and how to know how many host servers will be created in a CIDR?
+8. What is C-Name and A-record ?
+9. What is rebasing ?  --- GIT
+10. what is staging area ?  --- GIT
+11. What branch strategy do you follow ? --GIT
+12. What is nodeGroup ?   --- K8S
+13. What is statefulset and DaemonSet ?   --- K8S
+14. what is liveliness and readiness ?   --- K8S
+15. Can we deploy pod in Master node ? Why and can that be still deployed ?   --- K8S
+16. What kubernetes cluster do you use ? EKS ?? or On-Prem ?   --- K8S
+17. What is terraform statefile ? What will happen if I delete that ? --- Terraform
 
 
 ===================================================================================
