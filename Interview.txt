@@ -28,6 +28,6 @@ Interview Questions
 15. Can we deploy pod in Master node ? Why and can that be still deployed ?   --- K8S
 16. What kubernetes cluster do you use ? EKS ?? or On-Prem ?   --- K8S
 17. What is terraform statefile ? What will happen if I delete that ? --- Terraform
-
+18. Stateful and stateless.
 
 ===================================================================================
